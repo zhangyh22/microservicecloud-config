@@ -1,0 +1,90 @@
+spring: 
+  profiles: 
+    active: 
+      - dev # 等待连接获取的最大超时时间
+      
+---
+server: 
+    port: 8001
+  
+  
+spring: 
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client
+  datasource: 
+    driver-class-name: org.gjt.mm.mysql.Driver                  # MySQL驱动
+    type: com.alibaba.druid.pool.DruidDataSource                # 当前数据源操作类型
+    url: jdbc:mysql://123.206.25.104:3306/cloudDB01
+    username: root
+    password: zyhmzp
+    dbcp2:
+      min-idle: 5                                               # 数据库连接池的最小维持连接数
+      initial-size: 5                                           # 初始化连接数
+      max-total: 5                                              # 最大连接数
+      max-wait-millis: 200                                      # 等待连接获取的最大超时时间
+   
+  
+mybatis:
+  config-location:  classpath:mybatis/mybatis.cfg.xml           # mybatis配置文件所在路径
+  type-aliases-package: com.sinosoft.entities                   # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件                           # mapper映射文件
+  
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: microservicecloud-dept8001                     # 自定义服务名称信息
+    prefer-ip-address: true                                    # 访问路径可以显示IP地址
+   
+
+info:
+  app.name: microservicecloud
+  company.name: 中科软科技股份有限公司
+  build.argifactId: $project.artifactId$
+  build.version: $project.version$
+            
+---
+server: 
+    port: 8001
+    
+spring: 
+  profiles: test
+  application:
+    name: microservicecloud-config-dept-client
+  datasource: 
+    driver-class-name: org.gjt.mm.mysql.Driver                  # MySQL驱动
+    type: com.alibaba.druid.pool.DruidDataSource                # 当前数据源操作类型
+    url: jdbc:mysql://123.206.25.104:3306/cloudDB02
+    username: root
+    password: zyhmzp
+    dbcp2:
+      min-idle: 5                                               # 数据库连接池的最小维持连接数
+      initial-size: 5                                           # 初始化连接数
+      max-total: 5                                              # 最大连接数
+      max-wait-millis: 200                                      # 等待连接获取的最大超时时间
+   
+  
+mybatis:
+  config-location:  classpath:mybatis/mybatis.cfg.xml           # mybatis配置文件所在路径
+  type-aliases-package: com.sinosoft.entities                   # 所有Entity别名类所在包
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml                       # mapper映射文件                           # mapper映射文件
+  
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka,http://eureka7003.com:7003/eureka
+  instance:
+    instance-id: microservicecloud-dept8001                     # 自定义服务名称信息
+    prefer-ip-address: true                                    # 访问路径可以显示IP地址
+   
+
+info:
+  app.name: microservicecloud
+  company.name: 中科软科技股份有限公司
+  build.argifactId: $project.artifactId$
+  build.version: $project.version$
+            
